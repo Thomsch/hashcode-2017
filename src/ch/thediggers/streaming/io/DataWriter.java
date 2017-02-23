@@ -7,9 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * @author Thomsch
- */
 public abstract class DataWriter {
 
     public static void write(List<CacheServer> cacheServers, String fileName) {
@@ -19,10 +16,11 @@ public abstract class DataWriter {
 
             for (CacheServer cacheServer : cacheServers) {
                 writer.write(String.valueOf(cacheServer.getID()));
+
                 final List<Integer> videos = cacheServer.getVideos();
-                for (Integer video : videos) {
+                for (Integer video : videos)
                     writer.write(video + ' ');
-                }
+
                 writer.newLine();
             }
 
