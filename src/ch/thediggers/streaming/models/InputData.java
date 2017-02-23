@@ -1,26 +1,26 @@
 package ch.thediggers.streaming.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InputData {
 
-
-
     public final int videos;
-    public final int endPoints;
+    public final int numEndPoint;
     public final int requestDescriptions;
     public final int cacheServers;
     public final int cacheCapacity;
+    public final int[] videosSize;
+    public final List<EndPoint> endPoints;
+    public final List<Request> requests;
 
-    public final List<ArrayList<Ingredient>> pizza;
-
-    public InputData(int videos, int endPoints, int requestDescriptions, int cacheServers, int cacheCapacity, List<ArrayList<Ingredient>> pizza) {
+    public InputData(int videos, int numEndPoint, int requestDescriptions, int cacheServers, int cacheCapacity, int[] videosSize, List<EndPoint> endPoints, List<Request> requests) {
         this.videos = videos;
-        this.endPoints = endPoints;
+        this.numEndPoint = numEndPoint;
         this.requestDescriptions = requestDescriptions;
         this.cacheServers = cacheServers;
         this.cacheCapacity = cacheCapacity;
-        this.pizza = pizza;
+        this.videosSize = videosSize;
+        this.endPoints = endPoints;
+        this.requests = requests;
     }
 }
