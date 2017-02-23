@@ -10,10 +10,10 @@ public class InputData {
     public final int cacheServers;
     public final int cacheCapacity;
     public final int[] videosSize;
-    public final List<EndPoint> endPoints;
+    public final EndPoint[] endPoints;
     public final List<Request> requests;
 
-    public InputData(int videos, int numEndPoint, int requestDescriptions, int cacheServers, int cacheCapacity, int[] videosSize, List<EndPoint> endPoints, List<Request> requests) {
+    public InputData(int videos, int numEndPoint, int requestDescriptions, int cacheServers, int cacheCapacity, int[] videosSize, EndPoint[] endPoints, List<Request> requests) {
         this.videos = videos;
         this.numEndPoint = numEndPoint;
         this.requestDescriptions = requestDescriptions;

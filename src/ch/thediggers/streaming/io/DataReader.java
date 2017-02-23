@@ -24,7 +24,7 @@ public abstract class DataReader {
             final int numCacheServers = Integer.valueOf(params[3]);
             final int cacheServerCapacity = Integer.valueOf(params[4]);
             final int[] videos = new int[numVideos]; // index = id, value = size [MB]
-            final List<EndPoint> endPoints = new ArrayList<>(numEndPoints);
+            final EndPoint[] endPoints = new EndPoint[numEndPoints];
             final List<Request> requests = new ArrayList<>(numRequestDescriptions);
 
             final String[] videoData = br.readLine().split(Config.SEPARATOR);
@@ -43,13 +43,18 @@ public abstract class DataReader {
                     connectionData = br.readLine().split(Config.SEPARATOR);
                     cacheServers.put(Integer.valueOf(connectionData[0]), Integer.valueOf(connectionData[1]));
                 }
-                endPoints.add(new EndPoint(Integer.valueOf(endPointData[0]), cacheServers));
+                endPoints[i] = new EndPoint(Integer.valueOf(endPointData[0]), cacheServers);
             }
 
             for (int i = 0; i < numRequestDescriptions; i++) {
                 final String[] requestDescriptionData = br.readLine().split(Config.SEPARATOR);
 
-                requests.add(new Request(Integer.valueOf(requestDescriptionData[0]), Integer.valueOf(requestDescriptionData[1]), Integer.valueOf(requestDescriptionData[2])));
+                int endPointId = Integer.valueOf(requestDescriptionData[1]);
+
+                Request request = new Request(Integer.valueOf(requestDescriptionData[0]), endPointId, Integer.valueOf(requestDescriptionData[2]));
+
+                endPoints[endPointId].addRequest(request);
+                requests.add(request);
             }
 
             return new InputData(numVideos, numEndPoints, numRequestDescriptions, numCacheServers, cacheServerCapacity, videos, endPoints, requests);
