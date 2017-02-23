@@ -1,6 +1,6 @@
 package ch.thediggers.streaming.io;
 
-import ch.thediggers.streaming.models.Slice;
+import ch.thediggers.streaming.models.CacheServer;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,13 +12,17 @@ import java.util.List;
  */
 public abstract class DataWriter {
 
-    public static void write(List<Slice> slices, String fileName) {
+    public static void write(List<CacheServer> cacheServers, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write(String.valueOf(slices.size()));
+            writer.write(String.valueOf(cacheServers.size()));
             writer.newLine();
 
-            for (Slice slice : slices) {
-                writer.write(slice.toString());
+            for (CacheServer cacheServer : cacheServers) {
+                writer.write(String.valueOf(cacheServer.getID()));
+                final List<Integer> videos = cacheServer.getVideos();
+                for (Integer video : videos) {
+                    writer.write(video + ' ');
+                }
                 writer.newLine();
             }
 
