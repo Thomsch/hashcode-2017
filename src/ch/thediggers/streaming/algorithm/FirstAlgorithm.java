@@ -25,17 +25,23 @@ public class FirstAlgorithm extends Algorithm {
             int maxScoreServerIndex = 0;
             int[] serverScores = new int[input.numCacheServers];
             for (int server = 0; server < input.numCacheServers; server++) {
-                int thisServerScore = 0;
-                for (Request request : input.requestDescriptions) {
-                    if (request.requestedVideo == video) {
-                        final int latencyDifference = input.endPoints[request.endPointId].cacheServers.get(server);
-                        thisServerScore += request.numRequests * (latencyDifference);
+                if (input.cacheServerCapacity - serverContents[server] > input.videos[video]) {
+                    int thisServerScore = 0;
+                    for (Request request : input.requestDescriptions) {
+                        if (request.requestedVideo == video) {
+
+                            Map<Integer, Integer> endPointCacheServers = input.endPoints[request.endPointId].cacheServers;
+                            if (endPointCacheServers.containsKey(server)) {
+                                final int latencyDifference = endPointCacheServers.get(server);
+                                thisServerScore += request.numRequests * (latencyDifference);
+                            }
+                        }
                     }
+                    if (thisServerScore > serverScores[maxScoreServerIndex]) {
+                        maxScoreServerIndex = server;
+                    }
+                    serverScores[server] = thisServerScore;
                 }
-                if (thisServerScore > serverScores[maxScoreServerIndex]) {
-                    maxScoreServerIndex = server;
-                }
-                serverScores[server] = thisServerScore;
             }
             CacheServer cacheServer = new CacheServer();
             if (cacheServers.containsKey(maxScoreServerIndex)) {
@@ -43,8 +49,10 @@ public class FirstAlgorithm extends Algorithm {
             } else {
                 cacheServers.put(maxScoreServerIndex, cacheServer);
             }
-            cacheServer.videos.add(video);
-            serverContents[maxScoreServerIndex] += input.videos[video];
+            if (serverScores[maxScoreServerIndex] > 0) {
+                cacheServer.videos.add(video);
+                serverContents[maxScoreServerIndex] += input.videos[video];
+            }
         }
 
         return cacheServers;
