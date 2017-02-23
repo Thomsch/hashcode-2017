@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 
 abstract class AlgorithmTest {
-    static Algorithm algorithm;
-
     @Test
     void solveAll() throws IOException {
         solveKittens();
@@ -38,7 +36,10 @@ abstract class AlgorithmTest {
         solve("videos_worth_spreading");
     }
 
+    abstract Algorithm getNewInstance();
+
     private void solve(String filename) throws IOException {
+        Algorithm algorithm = getNewInstance();
         algorithm.read("data" + File.separator + filename + ".in");
         Instant start = Instant.now();
         HashMap<Integer, CacheServer> solution = algorithm.solve();
