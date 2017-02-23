@@ -22,23 +22,19 @@ abstract class AlgorithmTest {
         solveVideosWorthSpreading();
     }
 
-    @Test
-    void solveKittens() throws IOException {
+    private void solveKittens() throws IOException {
         solve("kittens");
     }
 
-    @Test
-    void solveZoo() throws IOException {
+    private void solveZoo() throws IOException {
         solve("me_at_the_zoo");
     }
 
-    @Test
-    void solveTrending() throws IOException {
+    private void solveTrending() throws IOException {
         solve("trending_today");
     }
 
-    @Test
-    void solveVideosWorthSpreading() throws IOException {
+    private void solveVideosWorthSpreading() throws IOException {
         solve("videos_worth_spreading");
     }
 
