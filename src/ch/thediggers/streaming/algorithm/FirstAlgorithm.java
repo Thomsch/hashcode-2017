@@ -74,4 +74,3 @@ public class FirstAlgorithm extends Algorithm {
         return V[N][W];
     }
 }
-}
