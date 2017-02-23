@@ -4,13 +4,12 @@ import ch.thediggers.streaming.models.CacheServer;
 import ch.thediggers.streaming.models.Request;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FirstAlgorithm extends Algorithm {
 
     @Override
-    HashMap<Integer, CacheServer> solve() {
+    Map<Integer, CacheServer> solve() {
         final Map<Integer, CacheServer> cacheServers = new HashMap<>();
 //        for (EndPoint endPoint : input.endPoints) {
 //            for(Map.Entry<Integer, Integer> cacheServer: endPoint.cacheServers.entrySet()) {
@@ -20,7 +19,7 @@ public class FirstAlgorithm extends Algorithm {
 //                }
 //            }
 //        }
-        int[] serverContents = new int[input.numCacheServers];
+        final int[] serverContents = new int[input.numCacheServers];
 
         for (int video = 0; video < input.videos.length; video++) {
             int maxScoreServerIndex = 0;
@@ -38,18 +37,26 @@ public class FirstAlgorithm extends Algorithm {
                 }
                 serverScores[server] = thisServerScore;
             }
+            CacheServer cacheServer = new CacheServer();
+            if (cacheServers.containsKey(maxScoreServerIndex)) {
+                cacheServer = cacheServers.get(maxScoreServerIndex);
+            } else {
+                cacheServers.put(maxScoreServerIndex, cacheServer);
+            }
+            cacheServer.videos.add(video);
             serverContents[maxScoreServerIndex] += input.videos[video];
         }
 
-        return null;
+        return cacheServers;
     }
 
     /**
      * Thank you https://dzone.com/articles/knapsack-problem
      * For example, item 0 as a value of val[0] and a weight of wt[0].
+     *
      * @param val is the list of values
-     * @param wt is the list of weight
-     * @param W is the max weight of the sack
+     * @param wt  is the list of weight
+     * @param W   is the max weight of the sack
      */
 
     public static int knapsack(int val[], int wt[], int W) {
