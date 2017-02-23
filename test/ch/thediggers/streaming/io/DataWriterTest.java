@@ -24,5 +24,4 @@ public class DataWriterTest {
 
         DataWriter.write(solution, "datawritertest-normal.out");
     }
-
 }

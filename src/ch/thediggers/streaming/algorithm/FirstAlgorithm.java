@@ -10,7 +10,7 @@ import java.util.Map;
 public class FirstAlgorithm extends Algorithm {
 
     @Override
-    List<CacheServer> solve() {
+    HashMap<Integer, CacheServer> solve() {
         final Map<Integer, CacheServer> cacheServers = new HashMap<>();
 //        for (EndPoint endPoint : input.endPoints) {
 //            for(Map.Entry<Integer, Integer> cacheServer: endPoint.cacheServers.entrySet()) {
