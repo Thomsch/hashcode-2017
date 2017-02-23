@@ -49,6 +49,6 @@ abstract class AlgorithmTest {
 //        System.out.println("Execution time for " + filename + ".in: "
 //                + Duration.between(start, end).toMillis() + " ms.");
 //
-//        DataWriter.write(solution, "data" + File.separator + filename + ".out");
+//        DataWriter.write_nullResult(solution, "data" + File.separator + filename + ".out");
     }
 }

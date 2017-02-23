@@ -12,10 +12,17 @@ import static org.junit.Assert.*;
  */
 public class DataWriterTest {
     @Test
-    public void write() throws Exception {
+    public void write_nullResult() throws Exception {
+        DataWriter.write(new HashMap<>(), "datawritertest-nullresult.out");
+    }
 
-        DataWriter.write(new HashMap<Integer, CacheServer>(), "datawritertest.out");
+    @Test
+    public void write_normal() throws Exception {
+        HashMap<Integer, CacheServer> solution = new HashMap<>();
+        solution.put(1, new CacheServer(0,3,4,5));
+        solution.put(4, new CacheServer(1,4,7,2,6,5));
 
+        DataWriter.write(solution, "datawritertest-normal.out");
     }
 
 }
