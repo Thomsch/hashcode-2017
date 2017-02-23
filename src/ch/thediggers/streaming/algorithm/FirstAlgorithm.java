@@ -21,6 +21,7 @@ public class FirstAlgorithm extends Algorithm {
 //        }
         final int[] serverContents = new int[input.numCacheServers];
 
+
         for (int video = 0; video < input.videos.length; video++) {
             int maxScoreServerIndex = 0;
             int[] serverScores = new int[input.numCacheServers];
@@ -49,7 +50,7 @@ public class FirstAlgorithm extends Algorithm {
             } else {
                 cacheServers.put(maxScoreServerIndex, cacheServer);
             }
-            if (serverScores[maxScoreServerIndex] > 0) {
+            if (serverScores[maxScoreServerIndex] > 10000) {
                 cacheServer.videos.add(video);
                 serverContents[maxScoreServerIndex] += input.videos[video];
             }
