@@ -20,8 +20,8 @@ abstract class Algorithm {
         final InputData input = DataReader.readFile(filename);
         rows = input.rows;
         columns = input.columns;
-        minIngredients = input.minIngredients;
-        maxCells = input.maxCells;
+        minIngredients = input.requestDescriptions;
+        maxCells = input.cacheServers;
         pizza = input.pizza;
     }
 

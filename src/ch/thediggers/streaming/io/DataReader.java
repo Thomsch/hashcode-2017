@@ -31,7 +31,7 @@ public abstract class DataReader {
                 for (int j = 0; j < columns; ++j)
                     slice.add((line.charAt(j) == 'M') ? Ingredient.MUSHROOM : Ingredient.TOMATO);
             }
-            return new InputData(rows, columns, minIngredients, maxCells, pizza);
+            return new InputData(rows, columns, minIngredients, maxCells, cacheCapacity, pizza);
         }
     }
 }
