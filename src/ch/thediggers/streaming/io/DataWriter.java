@@ -6,13 +6,12 @@ import ch.thediggers.streaming.util.Config;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class DataWriter {
 
-    public static void write(HashMap<Integer, CacheServer> cacheServers, String fileName) {
+    public static void write(Map<Integer, CacheServer> cacheServers, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(String.valueOf(cacheServers.size()));
             writer.newLine();

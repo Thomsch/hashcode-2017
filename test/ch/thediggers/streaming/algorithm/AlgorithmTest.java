@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 abstract class AlgorithmTest {
 
@@ -39,7 +40,7 @@ abstract class AlgorithmTest {
         Algorithm algorithm = getNewInstance();
         algorithm.read("data" + File.separator + filename + ".in");
         Instant start = Instant.now();
-        HashMap<Integer, CacheServer> solution = algorithm.solve();
+        Map<Integer, CacheServer> solution = algorithm.solve();
         Instant end = Instant.now();
 
         System.out.println("Execution time for " + filename + ".in: " + Duration.between(start, end).toMillis() + " ms.");
