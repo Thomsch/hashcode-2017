@@ -10,7 +10,7 @@ import java.util.Map;
 public class FirstAlgorithm extends Algorithm {
 
     @Override
-    List<CacheServer> solve() {
+    HashMap<Integer, CacheServer> solve() {
         final Map<Integer, CacheServer> cacheServers = new HashMap<>();
 //        for (EndPoint endPoint : input.endPoints) {
 //            for(Map.Entry<Integer, Integer> cacheServer: endPoint.cacheServers.entrySet()) {
@@ -46,6 +46,10 @@ public class FirstAlgorithm extends Algorithm {
 
     /**
      * Thank you https://dzone.com/articles/knapsack-problem
+     * For example, item 0 as a value of val[0] and a weight of wt[0].
+     * @param val is the list of values
+     * @param wt is the list of weight
+     * @param W is the max weight of the sack
      */
 
     public static int knapsack(int val[], int wt[], int W) {

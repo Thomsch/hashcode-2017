@@ -5,6 +5,7 @@ import ch.thediggers.streaming.models.CacheServer;
 import ch.thediggers.streaming.models.InputData;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 abstract class Algorithm {
@@ -14,5 +15,5 @@ abstract class Algorithm {
         input = DataReader.readFile(filename);
     }
 
-    abstract List<CacheServer> solve();
+    abstract HashMap<Integer, CacheServer> solve();
 }

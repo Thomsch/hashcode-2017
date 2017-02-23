@@ -1,6 +1,7 @@
 package ch.thediggers.streaming.io;
 
 import ch.thediggers.streaming.models.CacheServer;
+import ch.thediggers.streaming.util.Config;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -17,11 +18,11 @@ public abstract class DataWriter {
             writer.newLine();
 
             for (Map.Entry<Integer, CacheServer> cacheServer : cacheServers.entrySet()) {
-                writer.write(String.valueOf(cacheServer.getKey()));
+                writer.write(String.valueOf(cacheServer.getKey()) + Config.SEPARATOR);
 
                 final List<Integer> videos = cacheServer.getValue().videos;
                 for (Integer video : videos)
-                    writer.write(video + ' ');
+                    writer.write(String.valueOf(video) + Config.SEPARATOR);
 
                 writer.newLine();
             }
