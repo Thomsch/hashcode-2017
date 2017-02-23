@@ -19,7 +19,7 @@ public abstract class DataWriter {
             for (Map.Entry<Integer, CacheServer> cacheServer : cacheServers.entrySet()) {
                 writer.write(String.valueOf(cacheServer.getKey()));
 
-                final List<Integer> videos = cacheServer.getValue().getVideos();
+                final List<Integer> videos = cacheServer.getValue().videos;
                 for (Integer video : videos)
                     writer.write(video + ' ');
 
