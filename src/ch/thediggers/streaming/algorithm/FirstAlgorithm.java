@@ -33,6 +33,10 @@ public class FirstAlgorithm extends Algorithm {
 
     /**
      * Thank you https://dzone.com/articles/knapsack-problem
+     * For example, item 0 as a value of val[0] and a weight of wt[0].
+     * @param val is the list of values
+     * @param wt is the list of weight
+     * @param W is the max weight of the sack
      */
     public static int knapsack(int val[], int wt[], int W) {
         int N = wt.length; // Get the total number of items. Could be wt.length or val.length. Doesn't matter
