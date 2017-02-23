@@ -4,23 +4,24 @@ import java.util.List;
 
 public class InputData {
 
-    public final int videos;
+    public final int numVideos;
     public final int numEndPoint;
-    public final int requestDescriptions;
-    public final int cacheServers;
-    public final int cacheCapacity;
-    public final int[] videosSize;
-    public final EndPoint[] endPoints;
-    public final List<Request> requests;
+    public final int numRequestDescriptions;
+    public final int numCacheServers;
+    public final int cacheServerCapacity;
 
-    public InputData(int videos, int numEndPoint, int requestDescriptions, int cacheServers, int cacheCapacity, int[] videosSize, EndPoint[] endPoints, List<Request> requests) {
-        this.videos = videos;
+    public final int[] videos;
+    public final EndPoint[] endPoints;
+    public final List<Request> requestDescriptions;
+
+    public InputData(int numVideos, int numEndPoint, int numRequestDescriptions, int numCacheServers, int cacheServerCapacity, int[] videos, EndPoint[] endPoints, List<Request> requestDescriptions) {
+        this.numVideos = numVideos;
         this.numEndPoint = numEndPoint;
-        this.requestDescriptions = requestDescriptions;
-        this.cacheServers = cacheServers;
-        this.cacheCapacity = cacheCapacity;
-        this.videosSize = videosSize;
+        this.numRequestDescriptions = numRequestDescriptions;
+        this.numCacheServers = numCacheServers;
+        this.cacheServerCapacity = cacheServerCapacity;
+        this.videos = videos;
         this.endPoints = endPoints;
-        this.requests = requests;
+        this.requestDescriptions = requestDescriptions;
     }
 }
