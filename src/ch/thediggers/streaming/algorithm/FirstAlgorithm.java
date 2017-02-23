@@ -20,9 +20,9 @@ public class FirstAlgorithm extends Algorithm {
 //                }
 //            }
 //        }
-        for (int i = 0; i < input.videosSize.length; i++) {
+        for (int i = 0; i < input.videos.length; i++) {
 
-            for (Request request : input.requests) {
+            for (Request request : input.requestDescriptions) {
 
             }
         }
