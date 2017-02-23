@@ -12,33 +12,31 @@ import java.util.HashMap;
 import java.util.List;
 
 abstract class AlgorithmTest {
-    static Algorithm algorithm;
 
     @Test
-    void solveAll() throws IOException {
-        solveKittens();
-        solveZoo();
-        solveTrending();
-        solveVideosWorthSpreading();
-    }
-
-    private void solveKittens() throws IOException {
+    public void solveKittens() throws IOException {
         solve("kittens");
     }
 
-    private void solveZoo() throws IOException {
+    @Test
+    public void solveZoo() throws IOException {
         solve("me_at_the_zoo");
     }
 
-    private void solveTrending() throws IOException {
+    @Test
+    public void solveTrending() throws IOException {
         solve("trending_today");
     }
 
-    private void solveVideosWorthSpreading() throws IOException {
+    @Test
+    public void solveVideosWorthSpreading() throws IOException {
         solve("videos_worth_spreading");
     }
 
+    abstract Algorithm getNewInstance();
+
     private void solve(String filename) throws IOException {
+        Algorithm algorithm = getNewInstance();
         algorithm.read("data" + File.separator + filename + ".in");
         Instant start = Instant.now();
         HashMap<Integer, CacheServer> solution = algorithm.solve();
