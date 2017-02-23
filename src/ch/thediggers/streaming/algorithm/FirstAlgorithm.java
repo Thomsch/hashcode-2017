@@ -20,13 +20,26 @@ public class FirstAlgorithm extends Algorithm {
 //                }
 //            }
 //        }
-        for (int i = 0; i < input.videos.length; i++) {
+        int[] serverContents = new int[input.numCacheServers];
 
-            for (Request request : input.requestDescriptions) {
-
+        for (int video = 0; video < input.videos.length; video++) {
+            int maxScoreServerIndex = 0;
+            int[] serverScores = new int[input.numCacheServers];
+            for (int server = 0; server < input.numCacheServers; server++) {
+                int thisServerScore = 0;
+                for (Request request : input.requestDescriptions) {
+                    if (request.requestedVideo == video) {
+                        final int latencyDifference = input.endPoints[request.endPointId].cacheServers.get(server);
+                        thisServerScore += request.numRequests * (latencyDifference);
+                    }
+                }
+                if (thisServerScore > serverScores[maxScoreServerIndex]) {
+                    maxScoreServerIndex = server;
+                }
+                serverScores[server] = thisServerScore;
             }
+            serverContents[maxScoreServerIndex] += input.videos[video];
         }
-
 
         return null;
     }
@@ -34,6 +47,7 @@ public class FirstAlgorithm extends Algorithm {
     /**
      * Thank you https://dzone.com/articles/knapsack-problem
      */
+
     public static int knapsack(int val[], int wt[], int W) {
         int N = wt.length; // Get the total number of items. Could be wt.length or val.length. Doesn't matter
         int[][] V = new int[N + 1][W + 1]; //Create a matrix. Items are in rows and weight at in columns +1 on each side
@@ -45,18 +59,17 @@ public class FirstAlgorithm extends Algorithm {
         for (int row = 0; row <= N; row++) {
             V[row][0] = 0;
         }
-        for (int item=1;item<=N;item++){
+        for (int item = 1; item <= N; item++) {
             //Let's fill the values row by row
-            for (int weight=1;weight<=W;weight++){
+            for (int weight = 1; weight <= W; weight++) {
                 //Is the current items weight less than or equal to running weight
-                if (wt[item-1]<=weight){
+                if (wt[item - 1] <= weight) {
                     //Given a weight, check if the value of the current item + value of the item that we could afford with the remaining weight
                     //is greater than the value without the current item itself
-                    V[item][weight]=Math.max (val[item-1]+V[item-1][weight-wt[item-1]], V[item-1][weight]);
-                }
-                else {
+                    V[item][weight] = Math.max(val[item - 1] + V[item - 1][weight - wt[item - 1]], V[item - 1][weight]);
+                } else {
                     //If the current item's weight is more than the running weight, just carry forward the value without the current item
-                    V[item][weight]=V[item-1][weight];
+                    V[item][weight] = V[item - 1][weight];
                 }
             }
         }
@@ -69,5 +82,4 @@ public class FirstAlgorithm extends Algorithm {
         }
         return V[N][W];
     }
-}
 }

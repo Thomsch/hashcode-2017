@@ -1,14 +1,17 @@
 package ch.thediggers.streaming.io;
 
 import ch.thediggers.streaming.models.EndPoint;
+import ch.thediggers.streaming.models.InputData;
 import ch.thediggers.streaming.models.Request;
 import ch.thediggers.streaming.util.Config;
-import ch.thediggers.streaming.models.InputData;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Thomsch
@@ -36,12 +39,12 @@ public abstract class DataReader {
             for (int i = 0; i < numEndPoints; i++) {
                 final String[] endPointData = br.readLine().split(Config.SEPARATOR);
                 final int numConnectedCacheServers = Integer.valueOf(endPointData[1]);
-                final Map<Integer, Integer> cacheServers = new HashMap<>(); // key = id, value = latency to endpoint [ms]
+                final Map<Integer, Integer> cacheServers = new HashMap<>(); // key = id, value = latency difference [ms]
 
                 String[] connectionData;
                 for (int j = 0; j < numConnectedCacheServers; j++) {
                     connectionData = br.readLine().split(Config.SEPARATOR);
-                    cacheServers.put(Integer.valueOf(connectionData[0]), Integer.valueOf(connectionData[1]));
+                    cacheServers.put(Integer.valueOf(connectionData[0]), Integer.valueOf(endPointData[0]) - Integer.valueOf(connectionData[1]));
                 }
                 endPoints[i] = new EndPoint(Integer.valueOf(endPointData[0]), cacheServers);
             }

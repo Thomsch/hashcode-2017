@@ -10,7 +10,7 @@ import java.util.Map;
 public class EndPoint {
 
     public final int dataCenterLatency;
-    public final Map<Integer, Integer> cacheServers; // key = id, value = latency to endpoint [ms]
+    public final Map<Integer, Integer> cacheServers; // key = id, value = latency difference [ms]
     public final List<Request> requests;
 
     public EndPoint(int dataCenterLatency, Map<Integer, Integer> cacheServers) {
