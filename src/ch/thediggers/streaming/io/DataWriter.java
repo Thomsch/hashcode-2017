@@ -5,19 +5,21 @@ import ch.thediggers.streaming.models.CacheServer;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class DataWriter {
 
-    public static void write(List<CacheServer> cacheServers, String fileName) {
+    public static void write(HashMap<Integer, CacheServer> cacheServers, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(String.valueOf(cacheServers.size()));
             writer.newLine();
 
-            for (CacheServer cacheServer : cacheServers) {
-                writer.write(String.valueOf(cacheServer.getID()));
+            for (Map.Entry<Integer, CacheServer> cacheServer : cacheServers.entrySet()) {
+                writer.write(String.valueOf(cacheServer.getKey()));
 
-                final List<Integer> videos = cacheServer.getVideos();
+                final List<Integer> videos = cacheServer.getValue().getVideos();
                 for (Integer video : videos)
                     writer.write(video + ' ');
 

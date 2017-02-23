@@ -1,21 +1,14 @@
 package ch.thediggers.streaming.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CacheServer {
-    private final int ID;
-    private final List<Integer> videos = new ArrayList<>();
+    public final List<Integer> videos = new ArrayList<>();
+    public Map<EndPoint, Integer> latencyToEndpoints = new HashMap<>();
 
-    public CacheServer(int id) {
-        ID = id;
-    }
-
-    public List<Integer> getVideos() {
-        return videos;
-    }
-
-    public int getID() {
-        return ID;
+    public CacheServer() {
     }
 }
